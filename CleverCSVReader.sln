@@ -1,0 +1,34 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.4.33103.184
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CleverCSVReader", "CleverCSV\CleverCSVReader.csproj", "{B01A130D-3E4B-479E-AF8C-2F88DF04883D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestCleverCSV", "TestCleverCSV\TestCleverCSV.csproj", "{D1AB1B80-B797-448B-BC29-7E4E4C99B4A2}"
+	ProjectSection(ProjectDependencies) = postProject
+		{B01A130D-3E4B-479E-AF8C-2F88DF04883D} = {B01A130D-3E4B-479E-AF8C-2F88DF04883D}
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{B01A130D-3E4B-479E-AF8C-2F88DF04883D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B01A130D-3E4B-479E-AF8C-2F88DF04883D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B01A130D-3E4B-479E-AF8C-2F88DF04883D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B01A130D-3E4B-479E-AF8C-2F88DF04883D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D1AB1B80-B797-448B-BC29-7E4E4C99B4A2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D1AB1B80-B797-448B-BC29-7E4E4C99B4A2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D1AB1B80-B797-448B-BC29-7E4E4C99B4A2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D1AB1B80-B797-448B-BC29-7E4E4C99B4A2}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {6D9100B6-A6C9-4B0B-948A-925205774815}
+	EndGlobalSection
+EndGlobal
