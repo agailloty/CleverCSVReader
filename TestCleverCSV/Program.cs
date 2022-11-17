@@ -28,11 +28,12 @@ namespace TestCleverCSV
                         record = csv.GetField(i);
                         _guesser = new TypeGuesser(record);
 
-                        Console.WriteLine($"Value: {record} - Type: {_guesser.GuessValueType().Name}");
+                        Console.WriteLine($"Value: {record} - Guessed Type: {_guesser.GuessValueType().Name} ");
                     }
+                    Console.WriteLine("--");
                     max++;
 
-                    if (max >= 20)
+                    if (max >= 200)
                         break;
                 }
             }
