@@ -11,4 +11,10 @@
     <ProjectReference Include="..\CleverCSV\CleverCSVReader.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <None Update="Electricity_Production_By_Source.csv">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+
 </Project>
