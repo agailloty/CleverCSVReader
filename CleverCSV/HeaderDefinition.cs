@@ -19,30 +19,35 @@ namespace CleverCSVReader
 
         private Type FindDominantGuess(Type[] guessedTypes)
         {
-            var count = new Dictionary<string, int>();
+            var guessesCount = new Dictionary<Type, int>();
             
             foreach(Type type in guessedTypes)
             {
-                if (count.ContainsKey(type.Name))
+                if (guessesCount.ContainsKey(type))
                 {
-                    count[type.Name]++;
+                    guessesCount[type]++;
                 } else
                 {
-                    count.Add(type.Name, 1);
+                    guessesCount.Add(type, 1);
                 }
             }
 
-            if (count.Count == 1)
+            if (guessesCount.Count == 1)
                 return guessedTypes[0];
 
+            int maxGuessCount = 0; Type MaxGuessType = guessedTypes[0];
 
-            /*foreach (var element in count)
+            foreach (var guessCount in guessesCount)
             {
-                if (element.Value >= )
-            }
-            */
+                if (guessCount.Value > maxGuessCount)
+                {
+                    maxGuessCount = guessCount.Value;
+                    MaxGuessType = guessCount.Key;
+                }
 
-            return guessedTypes[0];
+            }
+
+            return MaxGuessType;
         }
     }
 }
