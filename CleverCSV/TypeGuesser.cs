@@ -1,4 +1,5 @@
-﻿using CsvHelper;
+﻿using CleverCSVReader;
+using CsvHelper;
 using System;
 using System.Collections.Generic;
 using System.Globalization;
@@ -28,27 +29,50 @@ namespace CleverCSV
             _reader = reader;
         }
 
-        private void GuessRowTypes(int maxIter = 200)
+        private Dictionary<string, List<Type>> GuessRowTypes(int maxIter = 200)
         {
-            var typeDict = new Dictionary<string, Type>();
+            var typeDict = new Dictionary<string, List<Type>>();
             int iter = 0;
+            _reader.Read();
+            _reader.ReadHeader();
             int headerCount = _reader.HeaderRecord.Count();
             string record = null;
 
             while (_reader.Read())
             {
-                for(int i = 0; i < headerCount; i++)
+                for (int i = 0; i < headerCount; i++)
                 {
                     record = _reader.GetField(i);
-                    typeDict.Add(_reader.HeaderRecord[i], GuessValueType(record));
+                    if (typeDict.ContainsKey(_reader.HeaderRecord[i]))
+                    {
+                        typeDict[_reader.HeaderRecord[i]].Add(GuessValueType(record));
+                    } 
+                    else
+                    {
+                        var typeList = new List<Type>();
+                        typeList.Add(GuessValueType(record));
+                        typeDict.Add(_reader.HeaderRecord[i], typeList);
+                    }
+                    
                 }
 
                 iter++;
                 if (iter >= maxIter)
                     break;
             }
+
+            return typeDict;
             
         }
+
+        public HeaderDefinition ResolveFieldTypes()
+        {
+            var typeDict = GuessRowTypes();
+            var headerDefinition = new HeaderDefinition(typeDict);
+
+            return headerDefinition;
+        }
+
 
 
         /// <summary>

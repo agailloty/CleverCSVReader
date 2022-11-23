@@ -14,6 +14,13 @@ namespace TestCleverCSV
             using (var reader = new StreamReader("Electricity_Production_By_Source.csv"))
             using (var csv = new CsvReader(reader, CultureInfo.InvariantCulture))
             {
+
+                _guesser= new TypeGuesser(csv);
+
+                var colDef = _guesser.ResolveFieldTypes();
+
+
+
                 int max = 0;
                 Type type;
                 string? record = string.Empty;

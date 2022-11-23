@@ -4,11 +4,11 @@ using System.Text;
 
 namespace CleverCSVReader
 {
-    internal class HeaderDefinition
+    public class HeaderDefinition
     {
-        private IDictionary<string, Type> _header;
+        private IDictionary<string, List<Type>> _header;
 
-        public HeaderDefinition(IDictionary<string, Type> header)
+        public HeaderDefinition(IDictionary<string, List<Type>> header)
         {
             _header = header;
         }
