@@ -65,12 +65,18 @@ namespace CleverCSV
             
         }
 
-        public HeaderDefinition ResolveFieldTypes()
+        public Dictionary<string, Type> ResolveFieldTypes()
         {
+            var valueTypeMap = new Dictionary<string, Type>();
             var typeDict = GuessRowTypes();
             var headerDefinition = new HeaderDefinition(typeDict);
 
-            return headerDefinition;
+            foreach (var type in typeDict)
+            {
+                valueTypeMap.Add(type.Key, headerDefinition.FindDominantGuess(type.Value.ToArray()));
+            }
+
+            return valueTypeMap;
         }
 
 

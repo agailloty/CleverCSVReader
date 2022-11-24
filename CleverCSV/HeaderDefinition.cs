@@ -17,9 +17,20 @@ namespace CleverCSVReader
         public string[] HeaderNames { get; }
 
 
-        private Type FindDominantGuess(Type[] guessedTypes)
+        public Type FindDominantGuess(Type[] guessedTypes)
         {
             var guessesCount = new Dictionary<Type, int>();
+
+            var typesGuessed = new HashSet<Type>();
+            typesGuessed.CopyTo(guessedTypes);
+
+            if (typesGuessed.Count == 1)
+                return guessedTypes[0];
+
+            if (typesGuessed.Contains(typeof(int)) && typesGuessed.Contains(typeof(Double)))
+            {
+                return typeof(Double);
+            }
             
             foreach(Type type in guessedTypes)
             {
@@ -46,6 +57,8 @@ namespace CleverCSVReader
                 }
 
             }
+
+            
 
             return MaxGuessType;
         }
