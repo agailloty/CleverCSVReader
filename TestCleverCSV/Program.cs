@@ -1,5 +1,6 @@
 ﻿using CleverCSV;
 using CsvHelper;
+using ObjectGenerator;
 using System.Globalization;
 
 namespace TestCleverCSV
@@ -9,6 +10,8 @@ namespace TestCleverCSV
         
         static void Main(string[] args)
         {
+            var colDef = new Dictionary<string, Type>();
+
             TypeGuesser _guesser;
 
             using (var reader = new StreamReader("Electricity_Production_By_Source.csv"))
@@ -17,7 +20,7 @@ namespace TestCleverCSV
 
                 _guesser= new TypeGuesser(csv);
 
-                var colDef = _guesser.ResolveFieldTypes();
+                colDef = _guesser.ResolveFieldTypes();
 
 
 
@@ -35,15 +38,18 @@ namespace TestCleverCSV
                         record = csv.GetField(i);
                         _guesser = new TypeGuesser(record);
 
-                        Console.WriteLine($"Value: {record} - Guessed Type: {_guesser.GuessValueType().Name} ");
+                        //Console.WriteLine($"Value: {record} - Guessed Type: {_guesser.GuessValueType().Name} ");
                     }
-                    Console.WriteLine("--");
+                    //Console.WriteLine("--");
                     max++;
 
                     if (max >= 200)
                         break;
                 }
             }
+            var classDec = new ObjectTypeMapper(colDef, "TestClass");
+            classDec.GenerateTypeCsharp(Console.Out);
+
         }
     }
 }

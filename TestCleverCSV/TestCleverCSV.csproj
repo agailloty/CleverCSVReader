@@ -9,6 +9,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\CleverCSV\CleverCSVReader.csproj" />
+    <ProjectReference Include="..\ObjectGenerator\ObjectGenerator.csproj" />
   </ItemGroup>
 
   <ItemGroup>
